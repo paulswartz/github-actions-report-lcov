@@ -163,7 +163,7 @@ async function genhtml (coverageFiles, tmpPath, workingDirectory) {
   const args = [
     ...coverageFiles,
     '--rc',
-    'lcov_branch_coverage=1',
+    'branch_coverage=1',
     '--output-directory',
     artifactPath
   ]
@@ -197,7 +197,7 @@ async function mergeCoverages (coverageFiles, tmpPath) {
   args.push('--output-file')
   args.push(mergedCoverageFile)
 
-  await exec.exec('lcov', [...args, '--rc', 'lcov_branch_coverage=1'])
+  await exec.exec('lcov', [...args, '--rc', 'branch_coverage=1'])
 
   return mergedCoverageFile
 }
@@ -217,7 +217,7 @@ async function summarize (coverageFile) {
 
   await exec.exec(
     'lcov',
-    ['--summary', coverageFile, '--rc', 'lcov_branch_coverage=1'],
+    ['--summary', coverageFile, '--rc', 'branch_coverage=1'],
     options
   )
 
@@ -243,13 +243,7 @@ async function detail (coverageFile, workingDirectory, pullRequest, octokit) {
 
   await exec.exec(
     'lcov',
-    [
-      '--list',
-      coverageFile,
-      '--list-full-path',
-      '--rc',
-      'lcov_branch_coverage=1'
-    ],
+    ['--list', coverageFile, '--list-full-path', '--rc', 'branch_coverage=1'],
     options
   )
 
