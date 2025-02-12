@@ -164,7 +164,7 @@ async function genhtml (coverageFiles, tmpPath, workingDirectory) {
     ...coverageFiles,
     '--rc',
     'lcov_branch_coverage=1',
-    '--artifact-directory',
+    '--output-directory',
     artifactPath
   ]
 
